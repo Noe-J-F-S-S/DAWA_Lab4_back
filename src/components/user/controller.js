@@ -50,7 +50,7 @@ export const store = async ( req,  res) =>{
             });
         }
 
-        body.profile_url = `hhtp://avatars.dicebear.com/api/avataaars/${body.name}.svg`;
+        body.profile_url = `http://avatars.dicebear.com/api/avataaars/${body.name}.svg`;
 
         const user = await prisma.user.create({
             data: {
