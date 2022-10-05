@@ -1,8 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import Pusher from "pusher";
 
-
-
 const prisma = new PrismaClient();
 
 const pusher = new Pusher({
@@ -16,9 +14,14 @@ const pusher = new Pusher({
 
 
 export const findAll = async (req, res) =>{
+    const sender_id = Number(req.params.sender_id);
+    const id = Number(req.params.id)
     try{
-        const users = await prisma.user.findMany();
-
+        //agregado semana 5-6///////////////////////////////////////////////////
+        const users = await prisma.user.findMany({
+            where: { id: { not: Number(req.params.id) } }
+        });
+        //agregado semana 5-6///////////////////////////////////////////////////
         res.json({
             ok: true,
             data: users,
